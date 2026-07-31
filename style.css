@@ -85,7 +85,7 @@ body {
 
 /* Mobile YouTube Bottom Sheet Modal - Perfectly fits content height */
 .bottom-sheet {
-    background-color: #0f0f0f;
+    background-color: #212121;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     padding: 8px 16px 20px 16px;
@@ -115,7 +115,7 @@ body {
     align-items: center;
     margin-bottom: 14px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #272727;
+    border-bottom: 1px solid #383838;
 }
 
 .sheet-title {
@@ -150,7 +150,7 @@ body {
 
 .stat-card {
     flex: 1;
-    background-color: #272727;
+    background-color: #383838;
     border-radius: 12px;
     padding: 10px 4px;
     display: flex;
