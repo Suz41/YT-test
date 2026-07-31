@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Mobile UI Mockup</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Video Player Section (Click image to change/upload) -->
+        <div class="video-player" id="videoPlayer" title="Click to change video thumbnail">
+            <img src="theater_seats_cropped.jpg" alt="Video Player Frame" class="video-bg" id="videoBg">
+            
+            <!-- Hidden file input for uploading custom top image -->
+            <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+            
+            <!-- Hover overlay prompt -->
+            <div class="upload-hint">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Click to Change Image</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar-filled"></div>
+            </div>
+        </div>
+
+        <!-- YouTube Description Bottom Sheet -->
+        <div class="bottom-sheet">
+            <div class="drag-handle-container">
+                <div class="drag-handle"></div>
+            </div>
+            
+            <div class="sheet-header">
+                <h2 class="sheet-title">Description</h2>
+                <button class="close-btn" aria-label="Close">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Stats Grid Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value">3,698</span>
+                    <span class="stat-label">Likes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">52,834</span>
+                    <span class="stat-label">Views</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">Jul 9</span>
+                    <span class="stat-label">2026</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to enable image upload/changing -->
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoBg = document.getElementById('videoBg');
+        const imageUploader = document.getElementById('imageUploader');
+
+        videoPlayer.addEventListener('click', () => {
+            imageUploader.click();
+        });
+
+        imageUploader.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    videoBg.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

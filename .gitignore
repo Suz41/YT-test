@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+crop.js
+crop.ps1
+crop_169.ps1
+crop_43.ps1
+get_ratio.ps1
+*.log
