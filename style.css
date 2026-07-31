@@ -174,24 +174,27 @@ body {
     font-weight: 400;
 }
 
-/* Description Body Content (Page 2) */
+/* Description Body Content (Page 2) - YouTube Sans Typography */
 .description-body {
-    margin-top: 18px;
+    margin-top: 14px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
+    font-family: 'Roboto', 'YouTube Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .link-line {
-    font-size: 14px;
-    color: #ffffff;
+    font-size: 15px;
+    color: #f1f1f1;
     font-weight: 400;
     line-height: 1.4;
+    letter-spacing: -0.1px;
 }
 
 .blue-link {
     color: #3ea6ff;
     text-decoration: none;
+    font-weight: 400;
 }
 
 .blue-link:hover {
@@ -201,22 +204,23 @@ body {
 .credits-section {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
 }
 
 .credits-header {
     font-size: 14px;
     font-weight: 500;
-    color: #ffffff;
+    color: #f1f1f1;
     margin-bottom: 2px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
 }
 
 .credit-line {
-    font-size: 14px;
-    color: #f1f1f1;
+    font-size: 15px;
+    color: #e1e1e1;
     font-weight: 400;
-    line-height: 1.45;
+    line-height: 1.4;
+    letter-spacing: -0.1px;
 }
 
 .page-nav {
