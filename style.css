@@ -173,3 +173,48 @@ body {
     color: #aaaaaa;
     font-weight: 400;
 }
+
+/* Description Body Content (Page 2) */
+.description-body {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.link-line {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.blue-link {
+    color: #3ea6ff;
+    text-decoration: none;
+}
+
+.blue-link:hover {
+    text-decoration: underline;
+}
+
+.credits-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.credits-header {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 2px;
+    letter-spacing: 0.2px;
+}
+
+.credit-line {
+    font-size: 14px;
+    color: #f1f1f1;
+    font-weight: 400;
+    line-height: 1.45;
+}
