@@ -225,6 +225,11 @@ body {
     letter-spacing: -0.1px;
 }
 
+.credit-role {
+    color: #ffffff;
+    font-weight: 500;
+}
+
 .page-nav {
     display: flex;
     justify-content: center;
