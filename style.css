@@ -218,3 +218,25 @@ body {
     font-weight: 400;
     line-height: 1.45;
 }
+
+.page-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #272727;
+    color: #3ea6ff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: #383838;
+}
