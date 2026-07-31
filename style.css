@@ -174,21 +174,22 @@ body {
     font-weight: 400;
 }
 
-/* Description Body Content (Page 2) - YouTube Sans Typography */
+/* Description Body Content (Page 2) - Uniform line gaps */
 .description-body {
     margin-top: 14px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 6px;
     font-family: 'Roboto', 'YouTube Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .link-line {
-    font-size: 15px;
-    color: #f1f1f1;
+    font-size: 14px;
+    color: #ffffff;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.5;
     letter-spacing: -0.1px;
+    margin-bottom: 0px;
 }
 
 .blue-link {
@@ -204,15 +205,15 @@ body {
 .credits-section {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .credits-header {
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     letter-spacing: 0.3px;
     text-transform: uppercase;
 }
