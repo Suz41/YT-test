@@ -14,16 +14,20 @@ body {
     min-height: 100vh;
 }
 
-/* Mobile Screen Container - Pure black background behind top rounded corners */
+/* Mobile Screen Container - Dark side bars (#1f1f1f) for Page 1, pure black (#000) for Credits page */
 .mobile-container {
     width: 100%;
     max-width: 400px;
     height: auto;
-    background-color: #000000;
+    background-color: #1f1f1f;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+}
+
+.credits-page .mobile-container {
+    background-color: #000000;
 }
 
 /* Video Player Area - Enforced 16:9 Aspect Ratio */
