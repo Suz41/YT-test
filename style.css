@@ -211,15 +211,15 @@ body {
     font-size: 14px;
     font-weight: 700;
     color: #ffffff;
-    margin-top: 10px;
-    margin-bottom: 6px;
+    margin-top: 12px;
+    margin-bottom: 8px;
     letter-spacing: 0.3px;
     text-transform: uppercase;
 }
 
 .credit-line {
     font-size: 14px;
-    color: #e1e1e1;
+    color: #aaaaaa;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: -0.1px;
