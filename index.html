@@ -36,19 +36,26 @@
         </div>
 
         <!-- YouTube Description Bottom Sheet (Page 1) -->
-        <div class="bottom-sheet">
+        <div class="bottom-sheet" id="bottomSheet">
             <div class="drag-handle-container">
                 <div class="drag-handle"></div>
             </div>
             
             <div class="sheet-header">
                 <h2 class="sheet-title">Description</h2>
-                <button class="close-btn" aria-label="Close">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
+                <!-- Color Shifter Toggle Button -->
+                <div class="color-shifter-container">
+                    <button class="color-toggle-btn" id="colorToggleBtn" title="Toggle Description Color (#0f0f0f / #0c1622)">
+                        <span class="color-dot default-dot"></span>
+                        <span class="color-dot navy-dot"></span>
+                    </button>
+                    <button class="close-btn" aria-label="Close">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- Stats Grid Cards -->
@@ -73,8 +80,9 @@
         </div>
     </div>
 
-    <!-- Script to enable image upload/changing -->
+    <!-- Scripts for image upload & color shifter -->
     <script>
+        // Image Upload Script
         const videoPlayer = document.getElementById('videoPlayer');
         const videoBg = document.getElementById('videoBg');
         const imageUploader = document.getElementById('imageUploader');
@@ -91,6 +99,26 @@
                     videoBg.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        // Color Shifter Script (#0f0f0f <-> #0c1622)
+        const bottomSheet = document.getElementById('bottomSheet');
+        const colorToggleBtn = document.getElementById('colorToggleBtn');
+
+        // Load saved color preference or default
+        const savedColor = localStorage.getItem('descriptionColor');
+        if (savedColor === 'navy') {
+            bottomSheet.classList.add('navy-mode');
+        }
+
+        colorToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            bottomSheet.classList.toggle('navy-mode');
+            if (bottomSheet.classList.contains('navy-mode')) {
+                localStorage.setItem('descriptionColor', 'navy');
+            } else {
+                localStorage.setItem('descriptionColor', 'default');
             }
         });
     </script>

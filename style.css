@@ -119,6 +119,50 @@ body {
     border-bottom: 1px solid #383838;
 }
 
+.color-shifter-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.color-toggle-btn {
+    background-color: #272727;
+    border: 1px solid #383838;
+    border-radius: 14px;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.color-toggle-btn:hover {
+    background-color: #383838;
+}
+
+.color-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.default-dot {
+    background-color: #0f0f0f;
+    border: 1px solid #ffffff;
+}
+
+.navy-dot {
+    background-color: #0c1622;
+    border: 1px solid #ffffff;
+}
+
+/* Navy Color Mode (#0c1622) */
+.bottom-sheet.navy-mode {
+    background-color: #0c1622 !important;
+}
+
 .sheet-title {
     font-size: 20px;
     font-weight: 700;
