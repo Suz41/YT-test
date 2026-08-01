@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Comment Clone - Page 3</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .comment-thread {
+            display: flex;
+            width: 100%;
+            background-color: transparent;
+            margin-top: 10px;
+        }
+
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 30px;
+            margin-right: 10px;
+            position: relative;
+            padding-top: 0px;
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+            display: block;
+            margin-left: 0;
+        }
+
+        /* The curved line connecting the avatar to the reply */
+        .reply-curve {
+            position: absolute;
+            top: 30px; /* Starts right at the bottom of the 30px avatar */
+            height: 78px; /* Shortened thread line height */
+            left: 14px; /* Centered under the 30px avatar */
+            width: 24px; /* Extends outward to the right */
+            border-left: 2px solid #383838;
+            border-bottom: 2px solid #383838;
+            border-bottom-left-radius: 14px; /* Smooth rounded YouTube curve arc */
+            z-index: 1;
+        }
+
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            min-height: 20px;
+            width: 100%;
+        }
+
+        .header .username {
+            font-size: 11px;
+            font-weight: 400;
+            color: #aaaaaa;
+        }
+
+        .header .dot {
+            font-size: 8px;
+            font-weight: 400;
+            color: #aaaaaa;
+            margin: 0 4px;
+        }
+
+        .header .time {
+            font-size: 11px;
+            font-weight: 400;
+            color: #aaaaaa;
+        }
+
+        .header .options {
+            margin-left: auto;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .options svg {
+            width: 18px;
+            height: 18px;
+            fill: #ffffff; /* SVG white */
+        }
+
+        .body-text {
+            font-size: 14px;
+            line-height: 20px;
+            color: #ffffff;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .timestamp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 3px;
+            height: 18px;
+            line-height: 18px;
+            background-color: #263850;
+            color: #3ea6ff;
+            border-radius: 0px; /* No round corners */
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px; /* Same text size as comment body */
+            margin-right: 4px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            color: #ffffff; /* SVG / text white */
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .action-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #ffffff; /* SVG white */
+        }
+
+        .action-btn .count {
+            color: #ffffff;
+            font-size: 13px;
+            margin-left: 6px;
+            font-weight: 400;
+        }
+
+        .reply-section {
+            display: flex;
+            align-items: center;
+            height: 20px;
+            margin-top: 6px; /* Shift 2 replies section slightly up */
+            cursor: pointer;
+        }
+
+        .reply-text {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .reply-text svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffffff; /* SVG white */
+            margin-top: 1px; /* Align chevron arrow slightly lower */
+        }
+    </style>
+</head>
+<body class="comments-page">
+    <div class="mobile-container">
+        <!-- Video Player Section (Click image to change/upload) -->
+        <div class="video-player" id="videoPlayer" title="Click to change video thumbnail">
+            <img src="theater_seats_cropped.jpg" alt="Video Player Frame" class="video-bg" id="videoBg">
+            
+            <!-- Hidden file input for uploading custom top image -->
+            <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+            
+            <!-- Hover overlay prompt -->
+            <div class="upload-hint">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Click to Change Image</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar-filled"></div>
+            </div>
+        </div>
+
+        <!-- YouTube Comments Bottom Sheet (Page 3 View) -->
+        <div class="bottom-sheet" id="bottomSheet">
+            <div class="drag-handle-container">
+                <div class="drag-handle"></div>
+            </div>
+
+            <!-- Comments Content Section -->
+            <div class="description-body" style="padding-bottom: 20px;">
+                <div class="comment-thread">
+                    <div class="left-col">
+                        <img src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?q=80&w=150&auto=format&fit=crop" alt="User avatar" class="avatar">
+                        <div class="reply-curve"></div>
+                    </div>
+                    
+                    <div class="right-col">
+                        <!-- Header Row -->
+                        <div class="header">
+                            <span class="username">@hypen78</span>
+                            <span class="dot">•</span>
+                            <span class="time">3w ago</span>
+                            <div class="options" title="More options">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                    <path d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM12 10.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM12 4.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Comment Body -->
+                        <div class="body-text">
+                            <a href="#" class="timestamp">2:06</a><span> i realised my feed is goated 🎉</span>
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div class="actions">
+                            <!-- Like Button -->
+                            <button class="action-btn" title="Like">
+                                <img src="Thumbsup.png" alt="Like" style="width: 16px; height: 16px; object-fit: contain;">
+                                <span class="count">5</span>
+                            </button>
+                            <!-- Dislike Button -->
+                            <button class="action-btn" title="Dislike">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M17 4H8.23c-.84 0-1.57.55-1.77 1.37L5.01 11.9c-.22.97.52 1.91 1.52 1.91h4.23l-1.52 4.94c-.25.81.24 1.66 1.07 1.92.38.12.79.06 1.12-.16L17 13.7V4zm4 0h-3v10h3V4zM6.53 12.8c-.28 0-.52-.17-.6-.43-.08-.26.01-.54.22-.7L11.3 5.5H15v7h-5.8l-1.52 4.94c-.05.04-.11.05-.18.03-.07-.02-.12-.08-.1-.15l1.52-4.94H6.53z"></path>
+                                </svg>
+                            </button>
+                            <!-- Comment / Reply Bubble -->
+                            <button class="action-btn" title="Comment">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h9.2l4.8 4.8V6c0-1.1-.9-2-2-2zm0 11.8L16.2 14H6V6h12v9.8z"></path>
+                                </svg>
+                            </button>
+                            <!-- Share / Reply Arrow -->
+                            <button class="action-btn" title="Share">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M14 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Reply Section -->
+                        <div class="reply-section">
+                            <span class="reply-text">
+                                2 replies 
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path d="M12 15.5l-6-6 1.4-1.4L12 12.7l4.6-4.6L18 9.5z" transform="rotate(-90 12 12)"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page Navigation and Color Shifter Toggle Container -->
+                <div class="page-nav" style="margin-top: 25px;">
+                    <div class="color-palette-nav">
+                        <button class="palette-dot dot-default" data-color="default" title="Default (#0f0f0f)"></button>
+                        <button class="palette-dot dot-gold" data-color="gold" title="Dark Gold (#22210c)"></button>
+                        <button class="palette-dot dot-red" data-color="red" title="Dark Red (#220f0b)"></button>
+                        <button class="palette-dot dot-burgundy" data-color="burgundy" title="Dark Burgundy (#32141c)"></button>
+                        <button class="palette-dot dot-teal" data-color="teal" title="Dark Teal (#0c2122)"></button>
+                        <button class="palette-dot dot-navy" data-color="navy" title="Deep Navy (#0c1323)"></button>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="page2.html" class="nav-btn">← Page 2</a>
+                        <a href="index.html" class="nav-btn">Page 1 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts for image upload & page 3 background color shifter -->
+    <script>
+        // Image Upload Script
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoBg = document.getElementById('videoBg');
+        const imageUploader = document.getElementById('imageUploader');
+
+        videoPlayer.addEventListener('click', () => {
+            imageUploader.click();
+        });
+
+        imageUploader.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    videoBg.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Page 3 Background Color Shifter Script
+        const bottomSheet = document.getElementById('bottomSheet');
+        const dots = document.querySelectorAll('.palette-dot');
+
+        function applySheetColor(mode) {
+            bottomSheet.classList.remove('sheet-gold', 'sheet-red', 'sheet-burgundy', 'sheet-teal', 'sheet-navy');
+            if (mode && mode !== 'default') {
+                bottomSheet.classList.add('sheet-' + mode);
+            }
+            dots.forEach(d => d.classList.remove('active'));
+            const activeDot = document.querySelector(`.palette-dot[data-color="${mode || 'default'}"]`);
+            if (activeDot) activeDot.classList.add('active');
+        }
+
+        const savedSheetColor = localStorage.getItem('page3SheetColorMode') || 'default';
+        applySheetColor(savedSheetColor);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedColor = dot.getAttribute('data-color');
+                applySheetColor(selectedColor);
+                localStorage.setItem('page3SheetColorMode', selectedColor);
+            });
+        });
+    </script>
+</body>
+</html>
