@@ -165,6 +165,11 @@ body {
 .stat-card.meta-red  { background-color: #220f0b !important; }
 .stat-card.meta-navy { background-color: #0c1323 !important; }
 
+/* Page 2 Bottom Sheet Color Shifts */
+.bottom-sheet.sheet-gold { background-color: #22210c !important; }
+.bottom-sheet.sheet-red  { background-color: #220f0b !important; }
+.bottom-sheet.sheet-navy { background-color: #0c1323 !important; }
+
 .sheet-title {
     font-size: 20px;
     font-weight: 700;

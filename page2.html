@@ -68,14 +68,21 @@
                     <p class="credit-line"><span class="credit-role">Subtitles :</span> Chirag Nayak</p>
                 </div>
 
+                <!-- Page Navigation and Color Shifter Toggle Container -->
                 <div class="page-nav">
+                    <div class="color-palette-nav">
+                        <button class="palette-dot dot-default" data-color="default" title="Default (#0f0f0f)"></button>
+                        <button class="palette-dot dot-gold" data-color="gold" title="Dark Gold (#22210c)"></button>
+                        <button class="palette-dot dot-red" data-color="red" title="Dark Red (#220f0b)"></button>
+                        <button class="palette-dot dot-navy" data-color="navy" title="Deep Navy (#0c1323)"></button>
+                    </div>
                     <a href="index.html" class="nav-btn">← Back to Page 1</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts for image upload -->
+    <!-- Scripts for image upload & page 2 background color shifter -->
     <script>
         // Image Upload Script
         const videoPlayer = document.getElementById('videoPlayer');
@@ -95,6 +102,32 @@
                 };
                 reader.readAsDataURL(file);
             }
+        });
+
+        // Page 2 Background Color Shifter Script (#0f0f0f, #22210c, #220f0b, #0c1323)
+        const bottomSheet = document.getElementById('bottomSheet');
+        const dots = document.querySelectorAll('.palette-dot');
+
+        function applySheetColor(mode) {
+            bottomSheet.classList.remove('sheet-gold', 'sheet-red', 'sheet-navy');
+            if (mode && mode !== 'default') {
+                bottomSheet.classList.add('sheet-' + mode);
+            }
+            dots.forEach(d => d.classList.remove('active'));
+            const activeDot = document.querySelector(`.palette-dot[data-color="${mode || 'default'}"]`);
+            if (activeDot) activeDot.classList.add('active');
+        }
+
+        const savedSheetColor = localStorage.getItem('page2SheetColorMode') || 'default';
+        applySheetColor(savedSheetColor);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedColor = dot.getAttribute('data-color');
+                applySheetColor(selectedColor);
+                localStorage.setItem('page2SheetColorMode', selectedColor);
+            });
         });
     </script>
 </body>
