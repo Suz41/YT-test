@@ -84,14 +84,19 @@ body {
     background-color: #ffffff;
 }
 
-/* Mobile YouTube Bottom Sheet Modal - Perfectly fits content height */
+/* Mobile YouTube Bottom Sheet Modal - Page 1 Pure Black #000000 */
 .bottom-sheet {
-    background-color: #0f0f0f;
+    background-color: #000000;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     padding: 8px 16px 20px 16px;
     display: flex;
     flex-direction: column;
+}
+
+/* Page 2 Bottom Sheet default background #0f0f0f */
+.credits-page .bottom-sheet {
+    background-color: #0f0f0f;
 }
 
 /* Drag Handle Bar */
