@@ -164,18 +164,21 @@ body {
 .dot-gold     { background-color: #22210c; }
 .dot-red      { background-color: #220f0b; }
 .dot-burgundy { background-color: #32141c; }
+.dot-teal     { background-color: #0c2122; }
 .dot-navy     { background-color: #0c1323; }
 
 /* Stat Card Meta Box Color Shifts */
 .stat-card.meta-gold     { background-color: #22210c !important; }
 .stat-card.meta-red      { background-color: #220f0b !important; }
 .stat-card.meta-burgundy { background-color: #32141c !important; }
+.stat-card.meta-teal     { background-color: #0c2122 !important; }
 .stat-card.meta-navy     { background-color: #0c1323 !important; }
 
 /* Page 2 Bottom Sheet Color Shifts */
 .bottom-sheet.sheet-gold     { background-color: #22210c !important; }
 .bottom-sheet.sheet-red      { background-color: #220f0b !important; }
 .bottom-sheet.sheet-burgundy { background-color: #32141c !important; }
+.bottom-sheet.sheet-teal     { background-color: #0c2122 !important; }
 .bottom-sheet.sheet-navy     { background-color: #0c1323 !important; }
 
 .sheet-title {

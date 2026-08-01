@@ -75,6 +75,7 @@
                         <button class="palette-dot dot-gold" data-color="gold" title="Dark Gold (#22210c)"></button>
                         <button class="palette-dot dot-red" data-color="red" title="Dark Red (#220f0b)"></button>
                         <button class="palette-dot dot-burgundy" data-color="burgundy" title="Dark Burgundy (#32141c)"></button>
+                        <button class="palette-dot dot-teal" data-color="teal" title="Dark Teal (#0c2122)"></button>
                         <button class="palette-dot dot-navy" data-color="navy" title="Deep Navy (#0c1323)"></button>
                     </div>
                     <a href="index.html" class="nav-btn">← Back to Page 1</a>
@@ -110,7 +111,7 @@
         const dots = document.querySelectorAll('.palette-dot');
 
         function applySheetColor(mode) {
-            bottomSheet.classList.remove('sheet-gold', 'sheet-red', 'sheet-burgundy', 'sheet-navy');
+            bottomSheet.classList.remove('sheet-gold', 'sheet-red', 'sheet-burgundy', 'sheet-teal', 'sheet-navy');
             if (mode && mode !== 'default') {
                 bottomSheet.classList.add('sheet-' + mode);
             }
