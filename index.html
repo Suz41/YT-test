@@ -43,26 +43,16 @@
             
             <div class="sheet-header">
                 <h2 class="sheet-title">Description</h2>
-                <!-- Multi-Color Palette Shifter Buttons -->
-                <div class="color-shifter-container">
-                    <div class="color-palette">
-                        <button class="palette-dot dot-default" data-color="default" title="Default (#0f0f0f)"></button>
-                        <button class="palette-dot dot-gold" data-color="gold" title="Dark Gold (#22210c)"></button>
-                        <button class="palette-dot dot-red" data-color="red" title="Dark Red (#220f0b)"></button>
-                        <button class="palette-dot dot-gray" data-color="gray" title="Charcoal Gray (#232323)"></button>
-                        <button class="palette-dot dot-navy" data-color="navy" title="Deep Navy (#0c1323)"></button>
-                    </div>
-                    <button class="close-btn" aria-label="Close">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
-                </div>
+                <button class="close-btn" aria-label="Close">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
 
             <!-- Stats Grid Cards -->
-            <div class="stats-grid">
+            <div class="stats-grid" id="statsGrid">
                 <div class="stat-card">
                     <span class="stat-value">2,548</span>
                     <span class="stat-label">Likes</span>
@@ -77,13 +67,20 @@
                 </div>
             </div>
 
+            <!-- Page Navigation and Color Shifter Toggle Container -->
             <div class="page-nav" style="margin-top: 20px;">
+                <div class="color-palette-nav">
+                    <button class="palette-dot dot-default" data-color="default" title="Default (#232323)"></button>
+                    <button class="palette-dot dot-gold" data-color="gold" title="Dark Gold (#22210c)"></button>
+                    <button class="palette-dot dot-red" data-color="red" title="Dark Red (#220f0b)"></button>
+                    <button class="palette-dot dot-navy" data-color="navy" title="Deep Navy (#0c1323)"></button>
+                </div>
                 <a href="page2.html" class="nav-btn">Go to Page 2 →</a>
             </div>
         </div>
     </div>
 
-    <!-- Scripts for image upload & multi-color shifter -->
+    <!-- Scripts for image upload & meta box color shifter -->
     <script>
         // Image Upload Script
         const videoPlayer = document.getElementById('videoPlayer');
@@ -105,29 +102,31 @@
             }
         });
 
-        // Multi-Color Shifter Script (#0f0f0f, #22210c, #220f0b, #232323, #0c1323)
-        const bottomSheet = document.getElementById('bottomSheet');
+        // Meta Cards Color Shifter Script (#232323, #22210c, #220f0b, #0c1323)
+        const statCards = document.querySelectorAll('.stat-card');
         const dots = document.querySelectorAll('.palette-dot');
 
-        function applyColorMode(mode) {
-            bottomSheet.classList.remove('mode-gold', 'mode-red', 'mode-gray', 'mode-navy');
+        function applyMetaBoxColor(mode) {
+            statCards.forEach(card => {
+                card.classList.remove('meta-gold', 'meta-red', 'meta-navy');
+                if (mode && mode !== 'default') {
+                    card.classList.add('meta-' + mode);
+                }
+            });
             dots.forEach(d => d.classList.remove('active'));
-            if (mode && mode !== 'default') {
-                bottomSheet.classList.add('mode-' + mode);
-            }
             const activeDot = document.querySelector(`.palette-dot[data-color="${mode || 'default'}"]`);
             if (activeDot) activeDot.classList.add('active');
         }
 
-        const savedColor = localStorage.getItem('descriptionColorMode') || 'default';
-        applyColorMode(savedColor);
+        const savedMetaColor = localStorage.getItem('metaBoxColorMode') || 'default';
+        applyMetaBoxColor(savedMetaColor);
 
         dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const selectedColor = dot.getAttribute('data-color');
-                applyColorMode(selectedColor);
-                localStorage.setItem('descriptionColorMode', selectedColor);
+                applyMetaBoxColor(selectedColor);
+                localStorage.setItem('metaBoxColorMode', selectedColor);
             });
         });
     </script>

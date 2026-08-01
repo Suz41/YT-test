@@ -119,24 +119,26 @@ body {
     border-bottom: 1px solid #383838;
 }
 
-.color-shifter-container {
+.page-nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
 }
 
-.color-palette {
+.color-palette-nav {
     display: flex;
     align-items: center;
     gap: 6px;
     background-color: #1f1f1f;
-    padding: 3px 6px;
-    border-radius: 12px;
+    padding: 6px 10px;
+    border-radius: 16px;
 }
 
 .palette-dot {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
@@ -145,25 +147,23 @@ body {
 }
 
 .palette-dot:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
 }
 
 .palette-dot.active {
     border-color: #ffffff;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
 }
 
-.dot-default { background-color: #0f0f0f; }
+.dot-default { background-color: #232323; }
 .dot-gold    { background-color: #22210c; }
 .dot-red     { background-color: #220f0b; }
-.dot-gray    { background-color: #232323; }
 .dot-navy    { background-color: #0c1323; }
 
-/* Custom Color Modes */
-.bottom-sheet.mode-gold { background-color: #22210c !important; }
-.bottom-sheet.mode-red  { background-color: #220f0b !important; }
-.bottom-sheet.mode-gray { background-color: #232323 !important; }
-.bottom-sheet.mode-navy { background-color: #0c1323 !important; }
+/* Stat Card Meta Box Color Shifts */
+.stat-card.meta-gold { background-color: #22210c !important; }
+.stat-card.meta-red  { background-color: #220f0b !important; }
+.stat-card.meta-navy { background-color: #0c1323 !important; }
 
 .sheet-title {
     font-size: 20px;
