@@ -21,15 +21,15 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 30px;
+            width: 24px;
             margin-right: 10px;
             position: relative;
             padding-top: 0px;
         }
 
         .avatar {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             object-fit: cover;
             z-index: 2;
@@ -40,13 +40,13 @@
         /* The curved line connecting the avatar to the reply */
         .reply-curve {
             position: absolute;
-            top: 30px; /* Starts right at the bottom of the 30px avatar */
-            height: 78px; /* Shortened thread line height */
-            left: 14px; /* Centered under the 30px avatar */
-            width: 24px; /* Extends outward to the right */
-            border-left: 2px solid #383838;
-            border-bottom: 2px solid #383838;
-            border-bottom-left-radius: 14px; /* Smooth rounded YouTube curve arc */
+            top: 24px; /* Starts right at the bottom of the 24px avatar */
+            height: 102px; /* Longer thread line height */
+            left: 11px; /* Centered under the 24px avatar */
+            width: 23px; /* Extends outward to the right */
+            border-left: 1.5px solid #383838;
+            border-bottom: 1.5px solid #383838;
+            border-bottom-left-radius: 16px; /* Proper round curve arc */
             z-index: 1;
         }
 
@@ -65,7 +65,7 @@
         }
 
         .header .username {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 400;
             color: #aaaaaa;
         }
@@ -74,11 +74,11 @@
             font-size: 8px;
             font-weight: 400;
             color: #aaaaaa;
-            margin: 0 4px;
+            margin: 0 3px;
         }
 
         .header .time {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 400;
             color: #aaaaaa;
         }
@@ -98,8 +98,8 @@
         }
 
         .body-text {
-            font-size: 14px;
-            line-height: 20px;
+            font-size: 12px;
+            line-height: 18px;
             color: #ffffff;
             margin-bottom: 12px;
             width: 100%;
@@ -110,14 +110,14 @@
             align-items: center;
             justify-content: center;
             padding: 0px 3px;
-            height: 18px;
-            line-height: 18px;
+            height: 16px;
+            line-height: 16px;
             background-color: #263850;
             color: #3ea6ff;
             border-radius: 0px; /* No round corners */
             text-decoration: none;
             font-weight: 400;
-            font-size: 14px; /* Same text size as comment body */
+            font-size: 12px; /* Same text size as comment body */
             margin-right: 4px;
         }
 
@@ -147,8 +147,8 @@
 
         .action-btn .count {
             color: #ffffff;
-            font-size: 13px;
-            margin-left: 6px;
+            font-size: 12px;
+            margin-left: 2px; /* Push count closer to the left towards like image */
             font-weight: 400;
         }
 
@@ -156,7 +156,7 @@
             display: flex;
             align-items: center;
             height: 20px;
-            margin-top: 6px; /* Shift 2 replies section slightly up */
+            margin-top: 3px;
             cursor: pointer;
         }
 
@@ -166,14 +166,15 @@
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 1px;
         }
 
         .reply-text svg {
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
             fill: #ffffff; /* SVG white */
             margin-top: 1px; /* Align chevron arrow slightly lower */
+            margin-left: -2px; /* Push chevron arrow closer to the left */
         }
     </style>
 </head>
@@ -198,30 +199,54 @@
 
             <!-- Progress Bar -->
             <div class="progress-bar-container">
-                <div class="progress-bar-filled"></div>
+                <div class="progress-bar-filled" style="width: 66%;"></div>
             </div>
         </div>
 
         <!-- YouTube Comments Bottom Sheet (Page 3 View) -->
         <div class="bottom-sheet" id="bottomSheet">
-            <div class="drag-handle-container">
+            <div class="drag-handle-container" style="padding-top: 4px; padding-bottom: 2px;">
                 <div class="drag-handle"></div>
             </div>
 
+            <!-- Header Title Bar (Comments + Info Icon + Close Icon) -->
+            <div class="comments-top-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 4px 0px 4px 0px; width: 100%; margin-bottom: 10px;">
+                <h2 style="font-size: 18px; font-weight: 700; color: #ffffff; margin: 0; padding-left: 0;">Comments</h2>
+                <div style="display: flex; align-items: center; gap: 16px; margin-right: 0;">
+                    <!-- Info Icon (i inside circle) -->
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <!-- Close Icon (X) -->
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Filter Chips (Top / Newest) -->
+            <div class="comments-filter-chips" style="display: flex; gap: 8px; padding: 4px 16px 8px 16px; margin: 0 -16px; border-bottom: 1px solid #383838; width: calc(100% + 32px); box-sizing: border-box;">
+                <button style="background: #f1f1f1; color: #0f0f0f; border: none; border-radius: 5px; width: 45px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; cursor: pointer; padding: 0;">Top</button>
+                <button style="background: #272727; color: #ffffff; border: none; border-radius: 5px; width: 65px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; cursor: pointer; padding: 0;">Newest</button>
+            </div>
+
             <!-- Comments Content Section -->
-            <div class="description-body" style="padding-bottom: 20px;">
+            <div class="description-body" style="padding: 10px 0px 20px 0px; width: 100%;">
                 <div class="comment-thread">
                     <div class="left-col">
-                        <img src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?q=80&w=150&auto=format&fit=crop" alt="User avatar" class="avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAteTAwshviEtRKCytxgdfHNMEsSILL9sULJuPlKlkSxQuHijRVUBLeAx8&s=10" alt="User avatar" class="avatar">
                         <div class="reply-curve"></div>
                     </div>
                     
                     <div class="right-col">
                         <!-- Header Row -->
                         <div class="header">
-                            <span class="username">@hypen78</span>
+                            <span class="username">@pavangowd_a21</span>
                             <span class="dot">•</span>
-                            <span class="time">3w ago</span>
+                            <span class="time">1w ago</span>
                             <div class="options" title="More options">
                                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                                     <path d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM12 10.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM12 4.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"></path>
@@ -231,42 +256,32 @@
 
                         <!-- Comment Body -->
                         <div class="body-text">
-                            <a href="#" class="timestamp">2:06</a><span> i realised my feed is goated 🎉</span>
+                            <a href="#" class="timestamp">2:06</a><span> The director seems to be a fanboy of Wong Kar Wai loved the subtle Fallen Angels homage</span>
                         </div>
 
                         <!-- Action Bar -->
                         <div class="actions">
                             <!-- Like Button -->
                             <button class="action-btn" title="Like">
-                                <img src="Thumbsup.png" alt="Like" style="width: 16px; height: 16px; object-fit: contain;">
+                                <img src="asset/Thumbsup.png" alt="Like" style="width: 24px; height: 24px; object-fit: contain;">
                                 <span class="count">5</span>
                             </button>
                             <!-- Dislike Button -->
                             <button class="action-btn" title="Dislike">
-                                <svg viewBox="0 0 24 24" width="16" height="16">
-                                    <path d="M17 4H8.23c-.84 0-1.57.55-1.77 1.37L5.01 11.9c-.22.97.52 1.91 1.52 1.91h4.23l-1.52 4.94c-.25.81.24 1.66 1.07 1.92.38.12.79.06 1.12-.16L17 13.7V4zm4 0h-3v10h3V4zM6.53 12.8c-.28 0-.52-.17-.6-.43-.08-.26.01-.54.22-.7L11.3 5.5H15v7h-5.8l-1.52 4.94c-.05.04-.11.05-.18.03-.07-.02-.12-.08-.1-.15l1.52-4.94H6.53z"></path>
-                                </svg>
+                                <img src="asset/Thumbsup.png" alt="Dislike" style="width: 24px; height: 24px; object-fit: contain; transform: rotate(180deg);">
                             </button>
                             <!-- Comment / Reply Bubble -->
                             <button class="action-btn" title="Comment">
-                                <svg viewBox="0 0 24 24" width="16" height="16">
-                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h9.2l4.8 4.8V6c0-1.1-.9-2-2-2zm0 11.8L16.2 14H6V6h12v9.8z"></path>
-                                </svg>
-                            </button>
-                            <!-- Share / Reply Arrow -->
-                            <button class="action-btn" title="Share">
-                                <svg viewBox="0 0 24 24" width="16" height="16">
-                                    <path d="M14 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"></path>
-                                </svg>
+                                <img src="asset/comment.png" alt="Comment" style="width: 24px; height: 24px; object-fit: contain;">
                             </button>
                         </div>
 
                         <!-- Reply Section -->
                         <div class="reply-section">
                             <span class="reply-text">
-                                2 replies 
-                                <svg viewBox="0 0 24 24" width="14" height="14">
-                                    <path d="M12 15.5l-6-6 1.4-1.4L12 12.7l4.6-4.6L18 9.5z" transform="rotate(-90 12 12)"></path>
+                                2 reply 
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 15.1l-6-6 1-1L12 13.1l5-5 1 1z" transform="rotate(-90 12 12)"></path>
                                 </svg>
                             </span>
                         </div>
